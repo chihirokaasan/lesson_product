@@ -14,7 +14,14 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('product_name', 100)->comment('商品名');
+            $table->integer('price')->unsigned()->comment('価格');
+            $table->integer('stock')->unsigned()->comment('在庫');
+            $table->integer('category_id')->unsigned()->comment('カテゴリ');
+            $table->text('comment')->comment('コメント');
+            $table->string('img_path')->nullable()->comment('画像パス');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
