@@ -28,7 +28,6 @@ class ProductsController extends Controller
      */
     public function index(ProductRequest $request): View
     {
-        // default limit
         $limit = $request->input('limit') ?? self::DEFAULT_PER_PAGE_RECORD;
         $productList = $this->productRepository->getPaginationListByConditions(
             $request,
@@ -37,7 +36,7 @@ class ProductsController extends Controller
 
         $params = $request->except('page');
 
-        return view('product.index',
+        return view('products.index',
             compact('productList', 'params', 'request', 'limit')
         );
     }
